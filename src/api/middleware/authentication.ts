@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import AuthorizationError from "../../core/errors/AuthorizationError";
 import { verifyToken } from "../../core/helpers/tokenHandler";
-import { User } from "../../core/models/user";
+import User from "../../core/models/user";
 
 export const authenticate = async (
     req: Request,
@@ -23,7 +23,7 @@ export const authenticate = async (
 
         const decodeToken = verifyToken(token)
 
-        const user = await User.findOne({ where: {id: decodeToken.userId }})
+        const user = await User.findById(decodeToken.userId)
         if (!user) {
             const error = new Error('not_authenticated');
             const authorizationError = new AuthorizationError(

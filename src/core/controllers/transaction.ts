@@ -59,6 +59,7 @@ export const InitializeCharge = async (
         userId: id,
         amount: body.amount,
         status: 'pending',
+        currency: body.currency,
         transaction_reference: ref,
         DateTime: formattedDate,
     });
