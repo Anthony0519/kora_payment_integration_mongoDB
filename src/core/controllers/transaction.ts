@@ -97,6 +97,11 @@ export const Payout = async (
         throw new ResourceNotFound("User not found", error);
     }
 
+    if (user.balance < body.amount) {
+        const error = new Error();
+        throw new BadRequestError("Low Balance", error);
+    }
+
     // Abbreviation of the user's first and last letter of fullname
     const userFullname = user.fullName.split(' ');
     const getFirstAndLastLetter1 = userFullname[0].slice(0, 1).toUpperCase() + userFullname[0].slice(-1).toUpperCase();
@@ -126,6 +131,7 @@ export const Payout = async (
         userId: id,
         amount: body.amount,
         status: 'pending',
+        currency: response.currency,
         transaction_reference: ref,
         DateTime: formattedDate,
     });

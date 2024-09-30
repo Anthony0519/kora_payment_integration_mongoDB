@@ -16,7 +16,7 @@ app.use((req, res, _next): void => {
   res.status(404).send({
     status: false,
     error: 'not found',
-    message: `${Errors.RESOURCE_NOT_FOUND}... Probably a wrong URL or method`,
+    message: `${Errors.RESOURCE_NOT_FOUND}... Probably a wrong endpoint or method`,
     data: {},
     path: req.url
   })

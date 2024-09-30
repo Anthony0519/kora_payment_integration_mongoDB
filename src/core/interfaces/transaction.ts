@@ -53,6 +53,11 @@ export interface PaymentGateway<T> {
     data: T
 }
 
+export interface PayoutGateway<T> {
+    data: T,
+    currency: string
+}
+
 export interface QueryTransactionRes<T> {
     reference: string,
     status: string,

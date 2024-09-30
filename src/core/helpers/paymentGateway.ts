@@ -1,6 +1,6 @@
 import InternalServerError from "../errors/internalServerError";
 import variable from '../envVariables/environment'
-import { BankVerification, InitializePayinReq, InitializePayoutReq, PaymentGateway, QueryTransaction, QueryTransactionRes } from "../interfaces/transaction";
+import { BankVerification, InitializePayinReq, InitializePayoutReq, PaymentGateway, PayoutGateway, QueryTransaction, QueryTransactionRes } from "../interfaces/transaction";
 
 const API_KEY = variable.API_KEY;
 
@@ -82,7 +82,7 @@ export const queryCharge = async (
 export const InitializePayout = async (
     body: InitializePayoutReq,
     userData: { [key: string]: any }
-): Promise<PaymentGateway<object>> => {
+): Promise<PayoutGateway<object>> => {
     try {
 
         const URL = 'https://api.korapay.com/merchant/api/v1/transactions/disburse'
@@ -96,7 +96,7 @@ export const InitializePayout = async (
             body: JSON.stringify({
                 reference: userData.ref,
                 destination: {
-                    type: 'bank_transfer',
+                    type: 'bank_account',
                     amount: body.amount,
                     currency: 'NGN',
                     narration: body.narration ? `${body.narration}` : null,
@@ -113,9 +113,11 @@ export const InitializePayout = async (
         })
 
         const response = await data.json()
-        return { data: response }
+        // console.log(response)
+        return { data: response, currency: response.data.currency }
 
     } catch (error: any) {
+        console.log(error)
         throw new InternalServerError('An error occoured: ', error.message)
     }
 }
