@@ -81,6 +81,7 @@ export const verifyPayout = async (
     body: QueryTransaction
 ):Promise<PayinRes<object>>=>{
     const res = await verifyTransfer(body)
+    // console.log(res)
     await payoutUpdate(res.reference, res.amount, res.status);
     return { message: "Payment retrieved successful and user Updated", data: res.data }
 }

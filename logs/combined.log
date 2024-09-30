@@ -736,3 +736,11 @@
 {"level":"info","message":"Connected to Database.","timestamp":"30-09-2024 07:31:23"}
 {"level":"info","message":"Server running on port: 2005","timestamp":"30-09-2024 07:31:23"}
 {"level":"error","message":"[Unhandled Error] =>  amount is not defined","stack":"ReferenceError: amount is not defined\n    at C:\\Users\\MAHAMA KAMANGATE\\Desktop\\koraPay_API - Copy\\src\\core\\controllers\\transaction.ts:100:24\n    at Generator.next (<anonymous>)\n    at fulfilled (C:\\Users\\MAHAMA KAMANGATE\\Desktop\\koraPay_API - Copy\\src\\core\\controllers\\transaction.ts:5:58)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"30-09-2024 07:32:00"}
+{"level":"info","message":"Connected to Database.","timestamp":"30-09-2024 07:34:20"}
+{"level":"info","message":"Server running on port: 2005","timestamp":"30-09-2024 07:34:20"}
+{"data":{"amount":"1000.00","currency":"NGN","customer":{"email":"anthonyodoh16@gmail.com","name":"Anthony odoh"},"fee":"30.00","message":"Payout processing","reference":"AYOH-XrX8SvWPl4","status":"processing"},"level":"info","message":"Transfer initiated successfully.","status":true,"timestamp":"30-09-2024 07:34:55"}
+{"level":"info","message":"Payout success","timestamp":"30-09-2024 07:34:55"}
+{"level":"info","message":"Connected to Database.","timestamp":"30-09-2024 08:07:41"}
+{"level":"info","message":"Server running on port: 2005","timestamp":"30-09-2024 08:07:41"}
+{"data":{"amount":"1000.00","currency":"NGN","customer":{"email":"anthonyodoh16@gmail.com","name":"Anthony odoh"},"fee":"30.00","message":"Payout processing","reference":"AYOH-WRyBzYbfAS","status":"processing"},"level":"info","message":"Transfer initiated successfully.","status":true,"timestamp":"30-09-2024 08:08:05"}
+{"level":"info","message":"Payout success","timestamp":"30-09-2024 08:08:05"}
