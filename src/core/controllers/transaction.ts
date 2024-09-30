@@ -5,14 +5,15 @@ import {
     PayoutRes,
     PaymentGateway,
     WebhookRes,
-    BankVerification
+    BankVerification,
+    QueryTransaction
 } from "../interfaces/transaction";
 import Transaction from '../models/transaction';
 import User from '../models/user'
 import ResourceNotFound from '../errors/resourceNotFoundError';
 import BadRequestError from '../errors/badRequestError';
 import { generateReference } from '../helpers/reference';
-import { InitializePayin, InitializePayout, verifyBank } from "../helpers/paymentGateway";
+import { InitializePayin, InitializePayout, verifyBank, queryCharge, verifyTransfer } from "../helpers/paymentGateway";
 import { PayinUpdate, payoutUpdate } from "../helpers/userUpdates";
 import { logger } from "../utils/logger";
 
@@ -67,6 +68,22 @@ export const InitializeCharge = async (
     logger.info('Successfull');
     return { message: "Pay in successful", data: response.data };
 };
+
+export const verifyPayin = async (
+    body: QueryTransaction
+):Promise<PayinRes<object>>=>{
+    const transaction = await queryCharge(body)
+    await PayinUpdate(transaction.reference, transaction.amount, transaction.status);
+    return { message: "Payment retrieved successful and user Updated", data: transaction.data }
+}
+
+export const verifyPayout = async (
+    body: QueryTransaction
+):Promise<PayinRes<object>>=>{
+    const res = await verifyTransfer(body)
+    await payoutUpdate(res.reference, res.amount, res.status);
+    return { message: "Payment retrieved successful and user Updated", data: res.data }
+}
 
 export const Payout = async (
     id: string,

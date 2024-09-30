@@ -5,7 +5,9 @@ import {
     InitializeCharge,
     BankDetails,
     Payout,
-    webhook
+    webhook,
+    verifyPayin,
+    verifyPayout
 } from '../../core/controllers/transaction'
 import { ResponseMessage } from '../../core/constant/successResponse'
 import variable from '../../core/envVariables/environment'
@@ -23,6 +25,38 @@ export const payIn:RequestHandler = async(
         const response = await InitializeCharge(res.locals.user.userId,validateData)
 
         res.json(responseHandler(response,ResponseMessage.SuccessfulTransaction))
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const verifyPayment:RequestHandler = async(
+    req,
+    res,
+    next
+):Promise<void>=>{
+    try {
+
+        // pass the req body to the function
+        const response = await verifyPayin(req.body)
+
+        res.json(responseHandler(response,'PayIn verification Initiated'))
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const verifyTransfer:RequestHandler = async(
+    req,
+    res,
+    next
+):Promise<void>=>{
+    try {
+
+        // pass the req body to the function
+        const response = await verifyPayout(req.body)
+
+        res.json(responseHandler(response,'PayIn verification Initiated'))
     } catch (error) {
         next(error)
     }

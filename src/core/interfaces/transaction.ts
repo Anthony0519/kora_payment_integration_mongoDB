@@ -27,7 +27,7 @@ export interface TransactionAttributes {
 }
 
 export interface QueryTransaction {
-    transaction_reference: string;
+    reference: string;
 }
 
 export interface InitializePayoutReq {
@@ -53,7 +53,14 @@ export interface PaymentGateway<T> {
     data: T
 }
 
-export interface WebhookRes{
+export interface QueryTransactionRes<T> {
+    reference: string,
+    status: string,
+    amount: number,
+    data: T
+}
+
+export interface WebhookRes {
     event: string;
     reference:string;
     amount:number;

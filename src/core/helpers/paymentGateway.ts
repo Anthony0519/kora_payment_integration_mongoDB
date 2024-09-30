@@ -1,6 +1,6 @@
 import InternalServerError from "../errors/internalServerError";
 import variable from '../envVariables/environment'
-import { BankVerification, InitializePayinReq, InitializePayoutReq, PaymentGateway, QueryTransaction } from "../interfaces/transaction";
+import { BankVerification, InitializePayinReq, InitializePayoutReq, PaymentGateway, QueryTransaction, QueryTransactionRes } from "../interfaces/transaction";
 
 const API_KEY = variable.API_KEY;
 
@@ -34,7 +34,7 @@ export const InitializePayin = async (
                     name: userData.name,
                     email: userData.email,
                 },
-                notification_url: 'https://tour-haven-application.vercel.app',
+                notification_url: 'https://kora-payment-integration-mongodb.onrender.com/webhook',
                 metadata: {
                     user_id: userData.id,
                 }
@@ -54,10 +54,10 @@ export const InitializePayin = async (
 
 export const queryCharge = async (
     body: QueryTransaction,
-): Promise<PaymentGateway<object>> => {
+): Promise<QueryTransactionRes<object>> => {
     try {
 
-        const URL = `https://api.korapay.com/merchant/api/v1/charges/${body.transaction_reference}`
+        const URL = `https://api.korapay.com/merchant/api/v1/charges/${body.reference}`
 
         const data = await fetch(URL, {
             method: 'GET',
@@ -67,7 +67,12 @@ export const queryCharge = async (
             }
         });
         const response = await data.json()
-        return { data: response }
+        return {
+            reference: response.data.reference,
+            status: response.data.status,
+            amount: parseInt(response.data.amount),
+            data: response
+        }
 
     } catch (error: any) {
         throw new InternalServerError('An error occoured: ', error.message)
@@ -115,12 +120,12 @@ export const InitializePayout = async (
     }
 }
 
-export const verifyPayout = async (
+export const verifyTransfer = async (
     body: QueryTransaction,
-): Promise<PaymentGateway<object>> => {
+): Promise<QueryTransactionRes<object>> => {
     try {
 
-        const URL = `https://api.korapay.com/merchant/api/v1/transactions/${body.transaction_reference}`
+        const URL = `https://api.korapay.com/merchant/api/v1/transactions/${body.reference}`
 
         const data = await fetch(URL, {
             method: 'GET',
@@ -131,7 +136,12 @@ export const verifyPayout = async (
         })
 
         const response = await data.json()
-        return { data: response }
+        return {
+            reference: response.data.reference,
+            status: response.data.status,
+            amount: parseInt(response.data.amount),
+            data: response
+        }
 
     } catch (error: any) {
         throw new InternalServerError('An error occoured: ', error.message)
