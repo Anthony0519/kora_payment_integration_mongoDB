@@ -1,6 +1,15 @@
 import InternalServerError from "../errors/internalServerError";
 import variable from '../envVariables/environment'
-import { BankVerification, InitializePayinReq, InitializePayoutReq, PaymentGateway, PayoutGateway, QueryTransaction, QueryTransactionRes } from "../interfaces/transaction";
+import {
+    BankVerification,
+    InitializePayinReq,
+    InitializePayoutReq,
+    PaymentGateway,
+    PayoutGateway,
+    QueryTransaction,
+    QueryTransactionRes
+} from "../interfaces/transaction";
+import { logger } from '../utils/logger'
 
 const API_KEY = variable.API_KEY;
 
@@ -48,7 +57,8 @@ export const InitializePayin = async (
         return { data: response.data }
  
     } catch (error: any) {
-        throw new InternalServerError('An error occoured: ', error.message)
+        logger.error(error.message)
+        throw new InternalServerError(`an error occoured: ${error.message}`, error)
     }
 }
 
@@ -75,7 +85,8 @@ export const queryCharge = async (
         }
 
     } catch (error: any) {
-        throw new InternalServerError('An error occoured: ', error.message)
+        logger.error(error.message)
+        throw new InternalServerError(`an error occoured: ${error.message}`, error)
     }
 }
 
@@ -118,7 +129,8 @@ export const InitializePayout = async (
 
     } catch (error: any) {
         console.log(error)
-        throw new InternalServerError('An error occoured: ', error.message)
+        logger.error(error.message)
+        throw new InternalServerError(`an error occoured: ${error.message}`, error)
     }
 }
 
@@ -146,7 +158,8 @@ export const verifyTransfer = async (
         }
 
     } catch (error: any) {
-        throw new InternalServerError('An error occoured: ', error.message)
+        logger.error(error.message)
+        throw new InternalServerError(`an error occoured: ${error.message}`, error)
     }
 }
 
@@ -173,6 +186,7 @@ export const verifyBank = async (
         const response = await data.json()
         return { data: response }
     } catch (error: any) {
-        throw new InternalServerError('An error occoured: ', error.message)
+        logger.error(error.message)
+        throw new InternalServerError(`an error occoured: ${error.message}`, error)
     }
 }

@@ -744,3 +744,5 @@
 {"level":"info","message":"Server running on port: 2005","timestamp":"30-09-2024 08:07:41"}
 {"data":{"amount":"1000.00","currency":"NGN","customer":{"email":"anthonyodoh16@gmail.com","name":"Anthony odoh"},"fee":"30.00","message":"Payout processing","reference":"AYOH-WRyBzYbfAS","status":"processing"},"level":"info","message":"Transfer initiated successfully.","status":true,"timestamp":"30-09-2024 08:08:05"}
 {"level":"info","message":"Payout success","timestamp":"30-09-2024 08:08:05"}
+{"level":"info","message":"Connected to Database.","timestamp":"30-09-2024 08:12:57"}
+{"level":"info","message":"Server running on port: 2005","timestamp":"30-09-2024 08:12:57"}
