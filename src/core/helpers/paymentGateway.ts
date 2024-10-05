@@ -57,7 +57,7 @@ export const InitializePayin = async (
         return { data: response.data }
  
     } catch (error: any) {
-        logger.error(error.message)
+        logger.error(error)
         throw new InternalServerError(`an error occoured: ${error.message}`, error)
     }
 }
