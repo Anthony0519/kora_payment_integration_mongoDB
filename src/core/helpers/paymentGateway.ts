@@ -50,10 +50,10 @@ export const InitializePayin = async (
             })
         });
 
-        // console.log(data)
+        logger.info(data)
 
         const response = await data.json()
-        // console.log(response)
+        logger.info(response)
         return { data: response.data }
  
     } catch (error: any) {
