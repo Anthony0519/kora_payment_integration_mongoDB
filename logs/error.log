@@ -30,3 +30,4 @@
 {"level":"error","message":"[MongooseValidationError] => ","timestamp":"30-09-2024 07:20:14"}
 {"level":"error","message":"[MongooseValidationError] => ","timestamp":"30-09-2024 07:26:35"}
 {"level":"error","message":"[Unhandled Error] =>  amount is not defined","stack":"ReferenceError: amount is not defined\n    at C:\\Users\\MAHAMA KAMANGATE\\Desktop\\koraPay_API - Copy\\src\\core\\controllers\\transaction.ts:100:24\n    at Generator.next (<anonymous>)\n    at fulfilled (C:\\Users\\MAHAMA KAMANGATE\\Desktop\\koraPay_API - Copy\\src\\core\\controllers\\transaction.ts:5:58)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"30-09-2024 07:32:00"}
+{"level":"error","message":"Unable to connect to the database: queryTxt ETIMEOUT cluster0.4askdj7.mongodb.net","timestamp":"09-10-2024 15:53:26"}

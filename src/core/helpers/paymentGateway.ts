@@ -1,3 +1,4 @@
+import axios from "axios";
 import InternalServerError from "../errors/internalServerError";
 import variable from '../envVariables/environment'
 import {
@@ -11,7 +12,7 @@ import {
 } from "../interfaces/transaction";
 import { logger } from '../utils/logger'
 
-const API_KEY = variable.API_KEY;
+const apiKey = variable.API_KEY;
 
 
 export const InitializePayin = async (
@@ -22,39 +23,69 @@ export const InitializePayin = async (
 
         const URL = 'https://api.korapay.com/merchant/api/v1/charges/initialize'
 
-        const data = await fetch(URL, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${API_KEY}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                amount: body.amount,
-                redirect_url: 'https://tour-haven-appli.vercel.app',
-                currency: body.currency,
-                reference: userData.ref,
-                narration: body.narration ? `${body.narration}` : "nil",
-                channels: [
-                    'card',
-                    'bank_transfer',
-                ],
-                default_channel: 'card',
-                customer: {
-                    name: userData.name,
-                    email: userData.email,
-                },
-                notification_url: 'https://kora-payment-integration-mongodb.onrender.com/webhook',
-                metadata: {
-                    user_id: userData.id,
+        // const data = await fetch(URL, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Authorization': `Bearer ${apiKey}`,
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: ({
+        //         amount: body.amount,
+        //         redirect_url: 'https://tour-haven-appli.vercel.app',
+        //         currency: body.currency,
+        //         reference: userData.ref,
+        //         narration: body.narration ? `${body.narration}` : "nil",
+        //         channels: [
+        //             'card',
+        //             'bank_transfer',
+        //         ],
+        //         default_channel: 'card',
+        //         customer: {
+        //             name: userData.name,
+        //             email: userData.email,
+        //         },
+        //         notification_url: 'https://kora-payment-integration-mongodb.onrender.com/webhook',
+        //         metadata: {
+        //             user_id: userData.id,
+        //         }
+        //     })
+        // });
+        const requestData = {
+                    amount: body.amount,
+                    redirect_url: 'https://tour-haven-appli.vercel.app',
+                    currency: body.currency,
+                    reference: userData.ref,
+                    narration: body.narration ? `${body.narration}` : "nil",
+                    channels: [
+                        'card',
+                        'bank_transfer',
+                    ],
+                    default_channel: 'card',
+                    customer: {
+                        name: userData.name,
+                        email: userData.email,
+                    },
+                    notification_url: 'https://kora-payment-integration-mongodb.onrender.com/webhook',
+                    metadata: {
+                        user_id: userData.id,
+                    }
                 }
-            })
-        });
+        const data = await axios.post(URL, requestData,
+        {
+        headers : {
+                Authorization: `Bearer ${apiKey}`,
+                "Content-Type": 'application/json'
+            }
+        })
 
-        logger.info(data)
+        // logger.info("first logger",data)
 
-        const response = await data.json()
-        logger.info(response)
-        return { data: response.data }
+        const response = data
+        if(response.data && response.data.status === true){
+            // logger.info("second logger =======",response)
+            return { data: response.data }
+        }
+        // return false;
  
     } catch (error: any) {
         console.log(error)
@@ -72,7 +103,7 @@ export const queryCharge = async (
         const data = await fetch(URL, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${API_KEY}`,
+                'Authorization': `Bearer ${apiKey}`,
                 'Content-Type': 'application/json'
             }
         });
@@ -101,7 +132,7 @@ export const InitializePayout = async (
         const data = await fetch(URL, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${API_KEY}`,
+                'Authorization': `Bearer ${apiKey}`,
                 'content-type': 'application/json'
             },
             body: JSON.stringify({
@@ -144,7 +175,7 @@ export const verifyTransfer = async (
         const data = await fetch(URL, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${API_KEY}`,
+                'Authorization': `Bearer ${apiKey}`,
                 'content-type': 'application/json'
             }
         })
@@ -173,7 +204,7 @@ export const verifyBank = async (
         const data = await fetch(URL, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${API_KEY}`,
+                'Authorization': `Bearer ${apiKey}`,
                 'content-type': 'application/json'
             },
             body: JSON.stringify({
