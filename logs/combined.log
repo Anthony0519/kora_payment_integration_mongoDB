@@ -746,3 +746,20 @@
 {"level":"info","message":"Payout success","timestamp":"30-09-2024 08:08:05"}
 {"level":"info","message":"Connected to Database.","timestamp":"30-09-2024 08:12:57"}
 {"level":"info","message":"Server running on port: 2005","timestamp":"30-09-2024 08:12:57"}
+{"level":"info","message":"Connected to Database.","timestamp":"09-10-2024 13:14:30"}
+{"level":"info","message":"Server running on port: 2005","timestamp":"09-10-2024 13:14:31"}
+{"level":"info","message":"Connected to Database.","timestamp":"09-10-2024 15:41:00"}
+{"level":"info","message":"Server running on port: 2005","timestamp":"09-10-2024 15:41:01"}
+{"level":"info","message":{},"timestamp":"09-10-2024 15:45:54"}
+{"data":{"checkout_url":"https://test-checkout.korapay.com/KPY-PI-202410091445fUmsdT52882/pay","reference":"AYOH-r0C2dCrVow"},"level":"info","message":"Charge created successfully","status":true,"timestamp":"09-10-2024 15:45:55"}
+{"level":"info","message":"Successfull","timestamp":"09-10-2024 15:45:56"}
+{"level":"info","message":"Connected to Database.","timestamp":"09-10-2024 15:48:12"}
+{"level":"info","message":"Server running on port: 2005","timestamp":"09-10-2024 15:48:12"}
+{"level":"info","message":{},"timestamp":"09-10-2024 15:48:21"}
+{"level":"info","message":{},"timestamp":"09-10-2024 15:48:21"}
+{"level":"info","message":"Successfull","timestamp":"09-10-2024 15:48:23"}
+{"level":"info","message":"Connected to Database.","timestamp":"09-10-2024 15:49:09"}
+{"level":"info","message":"Server running on port: 2005","timestamp":"09-10-2024 15:49:09"}
+{"level":"info","message":{},"timestamp":"09-10-2024 15:50:51"}
+{"data":{"checkout_url":"https://test-checkout.korapay.com/KPY-PI-202410091450nWYw3c49868/pay","reference":"AYOH-O5MBuJmc7D"},"level":"info","message":"Charge created successfully","status":true,"timestamp":"09-10-2024 15:50:51"}
+{"level":"info","message":"Successfull","timestamp":"09-10-2024 15:50:52"}
