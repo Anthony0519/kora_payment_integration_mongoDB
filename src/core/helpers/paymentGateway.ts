@@ -43,7 +43,7 @@ export const InitializePayin = async (
                     }
                 }
                 logger.info(apiKey)
-        const data = await axios.post(URL, requestData,
+        const data = await axios.post(URL, JSON.stringify(requestData),
         {
         headers : {
                 "Authorization": `Bearer ${apiKey}`,
