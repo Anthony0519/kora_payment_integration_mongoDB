@@ -22,34 +22,6 @@ export const InitializePayin = async (
     try {
 
         const URL = 'https://api.korapay.com/merchant/api/v1/charges/initialize'
-
-        // const data = await fetch(URL, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Authorization': `Bearer ${apiKey}`,
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: ({
-        //         amount: body.amount,
-        //         redirect_url: 'https://tour-haven-appli.vercel.app',
-        //         currency: body.currency,
-        //         reference: userData.ref,
-        //         narration: body.narration ? `${body.narration}` : "nil",
-        //         channels: [
-        //             'card',
-        //             'bank_transfer',
-        //         ],
-        //         default_channel: 'card',
-        //         customer: {
-        //             name: userData.name,
-        //             email: userData.email,
-        //         },
-        //         notification_url: 'https://kora-payment-integration-mongodb.onrender.com/webhook',
-        //         metadata: {
-        //             user_id: userData.id,
-        //         }
-        //     })
-        // });
         const requestData = {
                     amount: body.amount,
                     redirect_url: 'https://tour-haven-appli.vercel.app',
@@ -73,7 +45,7 @@ export const InitializePayin = async (
         const data = await axios.post(URL, requestData,
         {
         headers : {
-                Authorization: `Bearer ${apiKey}`,
+                "Authorization": `Bearer ${apiKey}`,
                 "Content-Type": 'application/json'
             }
         })
