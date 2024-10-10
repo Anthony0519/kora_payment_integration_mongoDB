@@ -792,3 +792,5 @@
 {"level":"info","message":"Server running on port: 2005","timestamp":"10-10-2024 04:16:32"}
 {"level":"info","message":"sk_test_2SaVyABh31pAarn1zga7n8UMnJotop68G8DPpRYz","timestamp":"10-10-2024 04:17:03"}
 {"level":"info","message":"Successfull","timestamp":"10-10-2024 04:17:05"}
+{"level":"info","message":"Connected to Database.","timestamp":"10-10-2024 04:26:11"}
+{"level":"info","message":"Server running on port: 2005","timestamp":"10-10-2024 04:26:11"}
